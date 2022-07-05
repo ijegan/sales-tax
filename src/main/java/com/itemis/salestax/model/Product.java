@@ -22,14 +22,14 @@ public class Product {
 
 	private @NotNull String name;
 	private @NotNull double price;
-	private @NotNull String description;
+	private String description;
 
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "category_id", nullable = false)
 	Category category;
 
-	public Product(String name, String imageURL, double price, String description, Category category) {
+	public Product(String name, double price, String description, Category category) {
 		super();
 		this.name = name;
 		this.price = price;

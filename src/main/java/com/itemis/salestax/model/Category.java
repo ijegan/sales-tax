@@ -19,12 +19,12 @@ public class Category {
 	@Column(name = "category_name")
 	private @NotBlank String categoryName;
 
-	private @NotBlank String description;
+	private String description;
 
 	public Category() {
 	}
 
-	public Category(@NotBlank String categoryName, @NotBlank String description) {
+	public Category(@NotBlank String categoryName, String description) {
 		this.categoryName = categoryName;
 		this.description = description;
 	}

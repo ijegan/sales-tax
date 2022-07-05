@@ -31,8 +31,6 @@ public class CategoryController {
 
 	@GetMapping("/")
 	public ResponseEntity<List<Category>> getCategories() {
-		categoryService.createCategory(
-				new Category("books", "Books are classified as either fiction/nonfiction/adventure/.. "));
 		List<Category> body = categoryService.listCategories();
 		return new ResponseEntity<List<Category>>(body, HttpStatus.OK);
 	}
