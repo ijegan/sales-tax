@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.itemis.salestax.dto.ProductDto;
 
 @Entity
 @Table(name = "products")
@@ -34,6 +35,13 @@ public class Product {
 		this.name = name;
 		this.price = price;
 		this.description = description;
+		this.category = category;
+	}
+
+	public Product(ProductDto productDto, Category category) {
+		this.name = productDto.getName();
+		this.description = productDto.getDescription();
+		this.price = productDto.getPrice();
 		this.category = category;
 	}
 
