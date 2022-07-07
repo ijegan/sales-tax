@@ -2,6 +2,7 @@ package com.itemis.salestax.service;
 
 import com.itemis.salestax.model.Category;
 import com.itemis.salestax.repository.CategoryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 @Transactional
 public class CategoryService {
 
+    @Autowired
     private final CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository) {

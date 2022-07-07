@@ -1,17 +1,10 @@
 package com.itemis.salestax.model;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.itemis.salestax.dto.ProductDto;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "products")
@@ -30,12 +23,18 @@ public class Product {
 	@JoinColumn(name = "category_id", nullable = false)
 	Category category;
 
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "tax_id", nullable = false)
+	SalesTax salesTax;
+
 	public Product(String name, double price, String description, Category category) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.category = category;
+		this.salesTax = null;
 	}
 
 	public Product(ProductDto productDto, Category category) {
@@ -43,6 +42,7 @@ public class Product {
 		this.description = productDto.getDescription();
 		this.price = productDto.getPrice();
 		this.category = category;
+		this.salesTax = null;
 	}
 
 	public Product() {
@@ -86,6 +86,14 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public SalesTax getSalesTax() {
+		return salesTax;
+	}
+
+	public void setSalesTax(SalesTax salesTax) {
+		this.salesTax = salesTax;
 	}
 
 	@Override
