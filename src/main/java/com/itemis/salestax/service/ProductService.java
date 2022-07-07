@@ -50,4 +50,8 @@ public class ProductService {
         return optionalProduct.get();
     }
 
+    public Product getProductByName(String name) throws CustomException {
+        return productRepository.findByName(name);
+    }
+
 }

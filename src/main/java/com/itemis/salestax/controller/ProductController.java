@@ -4,6 +4,7 @@ import com.itemis.salestax.common.Response;
 import com.itemis.salestax.dto.ProductDto;
 import com.itemis.salestax.model.Category;
 import com.itemis.salestax.model.ImportDuty;
+import com.itemis.salestax.model.Product;
 import com.itemis.salestax.model.SalesTax;
 import com.itemis.salestax.service.CategoryService;
 import com.itemis.salestax.service.ImportDutyService;
@@ -54,6 +55,11 @@ public class ProductController {
             return new ResponseEntity<>(new Response(false, "ImportDuty is invalid"), HttpStatus.CONFLICT);
         }
 
+        Product productAvailable = productService.getProductByName(productDto.getName());
+
+        if(productAvailable!=null){
+            return new ResponseEntity<>(new Response(false, "Product already exists"), HttpStatus.CONFLICT);
+        }
 
         Category category = optionalCategory.get();
         SalesTax salesTax = optionalSalesTax.get();
