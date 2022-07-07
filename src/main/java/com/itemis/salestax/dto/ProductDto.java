@@ -2,7 +2,9 @@ package com.itemis.salestax.dto;
 
 import javax.validation.constraints.NotNull;
 
+import com.itemis.salestax.model.ImportDuty;
 import com.itemis.salestax.model.Product;
+import org.springframework.context.annotation.Import;
 
 public class ProductDto {
 
@@ -12,6 +14,7 @@ public class ProductDto {
 	private String description;
 	private @NotNull Integer categoryId;
 	private @NotNull Integer salesTaxId;
+    private @NotNull Integer importDutyId;
 
 	public ProductDto(Product product) {
 		this.setId(product.getId());
@@ -20,6 +23,7 @@ public class ProductDto {
 		this.setDescription(product.getDescription());
 		this.setCategoryId(product.getCategory().getId());
 		this.setSalesTaxId(product.getSalesTax().getTaxId());
+        this.setImportDutyId(product.getImportDuty().getDutyId());
 	}
 
 	public ProductDto(@NotNull String name, @NotNull double price,
@@ -29,6 +33,7 @@ public class ProductDto {
 		this.description = description;
 		this.categoryId = categoryId;
 		this.salesTaxId = salesTaxId;
+        this.importDutyId = importDutyId;
 	}
 
 	public ProductDto() {
@@ -81,4 +86,13 @@ public class ProductDto {
 	public void setSalesTaxId(Integer salesTaxId) {
 		this.salesTaxId = salesTaxId;
 	}
+
+    public Integer getImportDutyId() {
+        return importDutyId;
+    }
+
+    public void setImportDutyId(Integer importDutyId) {
+        this.importDutyId = importDutyId;
+    }
+
 }

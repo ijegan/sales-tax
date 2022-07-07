@@ -1,15 +1,13 @@
 package com.itemis.salestax.service;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
+import com.itemis.salestax.model.SalesTax;
+import com.itemis.salestax.repository.SalesTaxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itemis.salestax.model.SalesTax;
-import com.itemis.salestax.repository.SalesTaxRepository;
+import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional

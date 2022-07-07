@@ -28,21 +28,28 @@ public class Product {
 	@JoinColumn(name = "tax_id", nullable = false)
 	SalesTax salesTax;
 
-	public Product(String name, double price, String description, Category category, SalesTax salesTax) {
+	@JsonIgnore
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "duty_id", nullable = false)
+	ImportDuty importDuty;
+
+	public Product(String name, double price, String description, Category category, SalesTax salesTax, ImportDuty importDuty) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.category = category;
 		this.salesTax = salesTax;
+		this.importDuty = importDuty;
 	}
 
-	public Product(ProductDto productDto, Category category, SalesTax salesTax) {
+	public Product(ProductDto productDto, Category category, SalesTax salesTax, ImportDuty importDuty) {
 		this.name = productDto.getName();
 		this.description = productDto.getDescription();
 		this.price = productDto.getPrice();
 		this.category = category;
 		this.salesTax = salesTax;
+		this.importDuty = importDuty;
 	}
 
 	public Product() {
@@ -94,6 +101,14 @@ public class Product {
 
 	public void setSalesTax(SalesTax salesTax) {
 		this.salesTax = salesTax;
+	}
+
+	public ImportDuty getImportDuty() {
+		return importDuty;
+	}
+
+	public void setImportDuty(ImportDuty importDuty) {
+		this.importDuty = importDuty;
 	}
 
 	@Override
