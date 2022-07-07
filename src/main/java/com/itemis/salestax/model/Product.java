@@ -28,21 +28,21 @@ public class Product {
 	@JoinColumn(name = "tax_id", nullable = false)
 	SalesTax salesTax;
 
-	public Product(String name, double price, String description, Category category) {
+	public Product(String name, double price, String description, Category category, SalesTax salesTax) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.category = category;
-		this.salesTax = null;
+		this.salesTax = salesTax;
 	}
 
-	public Product(ProductDto productDto, Category category) {
+	public Product(ProductDto productDto, Category category, SalesTax salesTax) {
 		this.name = productDto.getName();
 		this.description = productDto.getDescription();
 		this.price = productDto.getPrice();
 		this.category = category;
-		this.salesTax = null;
+		this.salesTax = salesTax;
 	}
 
 	public Product() {

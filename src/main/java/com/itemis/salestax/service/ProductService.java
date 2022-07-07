@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.itemis.salestax.model.SalesTax;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +29,13 @@ public class ProductService {
         return productDtos;
     }
 
-    public void addProduct(ProductDto productDto, Category category) {
-        Product product = new Product(productDto, category);
+    public void addProduct(ProductDto productDto, Category category, SalesTax salesTax) {
+        Product product = new Product(productDto, category, salesTax);
         productRepository.save(product);
     }
 
-    public void updateProduct(Integer productID, ProductDto productDto, Category category) {
-        Product product = new Product(productDto, category);
+    public void updateProduct(Integer productID, ProductDto productDto, Category category, SalesTax salesTax) {
+        Product product = new Product(productDto, category, salesTax );
         product.setId(productID);
         productRepository.save(product);
     }

@@ -11,6 +11,7 @@ public class ProductDto {
 	private @NotNull double price;
 	private String description;
 	private @NotNull Integer categoryId;
+	private @NotNull Integer salesTaxId;
 
 	public ProductDto(Product product) {
 		this.setId(product.getId());
@@ -18,14 +19,16 @@ public class ProductDto {
 		this.setPrice(product.getPrice());
 		this.setDescription(product.getDescription());
 		this.setCategoryId(product.getCategory().getId());
+		this.setSalesTaxId(product.getSalesTax().getTaxId());
 	}
 
 	public ProductDto(@NotNull String name, @NotNull double price,
-					  @NotNull String description, @NotNull Integer categoryId) {
+					  @NotNull String description, @NotNull Integer categoryId, @NotNull Integer salesTaxId) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.categoryId = categoryId;
+		this.salesTaxId = salesTaxId;
 	}
 
 	public ProductDto() {
@@ -69,5 +72,13 @@ public class ProductDto {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public Integer getSalesTaxId() {
+		return salesTaxId;
+	}
+
+	public void setSalesTaxId(Integer salesTaxId) {
+		this.salesTaxId = salesTaxId;
 	}
 }
