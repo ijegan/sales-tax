@@ -31,7 +31,7 @@ public class ImportDutyController {
         if (importDutyService.readImportDuty(importDuty.getDutyName()) != null) {
             return new ResponseEntity<Response>(new Response(false, "sales tax already exists"), HttpStatus.CONFLICT);
         }
-        importDutyService.addSalesTax(importDuty);
+        importDutyService.addImportDuty(importDuty);
         return new ResponseEntity<Response>(new Response(true, "created sales tax"), HttpStatus.CREATED);
     }
 

@@ -26,8 +26,8 @@ public class ImportDutyService {
         return importDutyRepository.findAll();
     }
 
-    public void addSalesTax(ImportDuty salesTax) {
-        importDutyRepository.save(salesTax);
+    public void addImportDuty(ImportDuty importDuty) {
+        importDutyRepository.save(importDuty);
     }
 
     public ImportDuty readImportDuty(String name) {

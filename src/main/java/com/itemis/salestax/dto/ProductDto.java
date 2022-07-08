@@ -27,7 +27,7 @@ public class ProductDto {
 	}
 
 	public ProductDto(@NotNull String name, @NotNull double price,
-					  @NotNull String description, @NotNull Integer categoryId, @NotNull Integer salesTaxId) {
+					  @NotNull String description, @NotNull Integer categoryId, @NotNull Integer salesTaxId, @NotNull Integer importDutyId) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
