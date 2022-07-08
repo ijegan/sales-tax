@@ -30,8 +30,11 @@ public class PriceCalculatorService {
 
             salesTax = product.getPrice() * (product.getSalesTax().getTaxValue() / 100);
             importTax = product.getPrice() * (product.getImportDuty().getDutyValue() / 100);
+            
+            Double roundedSalesTax=Math.round(salesTax * 20) / 20.0;
+            Double roundedImportTax=Math.round(importTax * 20) / 20.0;
 
-            taxes = salesTax + importTax;
+            taxes = roundedSalesTax + roundedImportTax;
             total = taxes + product.getPrice();
 
             priceDto.setTaxes(taxes);
