@@ -34,12 +34,12 @@ public class ImportDutyService {
         return importDutyRepository.findByDutyName(name);
     }
 
-    public Optional<ImportDuty> readImportDuty(Integer salesId) {
-        return importDutyRepository.findById(salesId);
+    public Optional<ImportDuty> readImportDuty(Integer importDutyId) {
+        return importDutyRepository.findById(importDutyId);
     }
 
-    public void updateImportDuty(Integer salesID, ImportDuty tax) {
-        ImportDuty importyDuty = importDutyRepository.findById(salesID).get();
+    public void updateImportDuty(Integer importDutyId, ImportDuty tax) {
+        ImportDuty importyDuty = importDutyRepository.findById(importDutyId).get();
         importyDuty.setDutyName(tax.getDutyName());
         importyDuty.setDutyValue(tax.getDutyValue());
 

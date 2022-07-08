@@ -20,31 +20,31 @@ public class ImportDutyController {
     private ImportDutyService importDutyService;
 
     @GetMapping("/")
-    public ResponseEntity<List<ImportDuty>> getSalesInformation() {
+    public ResponseEntity<List<ImportDuty>> getImportDuty() {
         List<ImportDuty> body = importDutyService.listImportDuty();
         return new ResponseEntity<List<ImportDuty>>(body, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Response> addSalesTax(@Valid @RequestBody ImportDuty importDuty) {
+    public ResponseEntity<Response> addImportDuty(@Valid @RequestBody ImportDuty importDuty) {
 
         if (importDutyService.readImportDuty(importDuty.getDutyName()) != null) {
-            return new ResponseEntity<Response>(new Response(false, "sales tax already exists"), HttpStatus.CONFLICT);
+            return new ResponseEntity<Response>(new Response(false, "import duty already exists"), HttpStatus.CONFLICT);
         }
         importDutyService.addImportDuty(importDuty);
-        return new ResponseEntity<Response>(new Response(true, "created sales tax"), HttpStatus.CREATED);
+        return new ResponseEntity<Response>(new Response(true, "created imported duty"), HttpStatus.CREATED);
     }
 
-    @PostMapping("/update/{salesID}")
-    public ResponseEntity<Response> updateCategory(@PathVariable("salesID") Integer salesID, @Valid @RequestBody ImportDuty duty) {
+    @PostMapping("/update/{importDutyId}")
+    public ResponseEntity<Response> updateImportDuty(@PathVariable("importDutyId") Integer importDutyId, @Valid @RequestBody ImportDuty duty) {
         // Check to see if the import duty exists.
-        if (importDutyService.readImportDuty(salesID).isPresent()) {
+        if (importDutyService.readImportDuty(importDutyId).isPresent()) {
             // If the import duty exists then update it.
-            importDutyService.updateImportDuty(salesID, duty);
+            importDutyService.updateImportDuty(importDutyId, duty);
             return new ResponseEntity<Response>(new Response(true, "updated import duty"), HttpStatus.OK);
         }
 
         // If the import duty doesn't exist then return a response of unsuccessful.
-        return new ResponseEntity<Response>(new Response(false, "importduty does not exist"), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Response>(new Response(false, "import duty does not exist"), HttpStatus.NOT_FOUND);
     }
 }
