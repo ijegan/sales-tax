@@ -111,20 +111,20 @@ class SalesTaxApplicationTests {
 
         //Test case 3
 
-        ProductDto c1= new ProductDto("perfume",32.19,"imported bottle of perfume",1,1,2);
-        ProductDto c2= new ProductDto("perfume",20.89,"bottle of perfume",1,1,1);
+        ProductDto c1= new ProductDto("perfume",27.99,"imported bottle of perfume",1,1,2);
+        ProductDto c2= new ProductDto("perfume",18.99,"bottle of perfume",1,1,1);
         ProductDto c3= new ProductDto("headache pills",9.75,"",4,4,1);
-        ProductDto c4= new ProductDto("chocolates",11.85,"",3,3,2);
+        ProductDto c4= new ProductDto("chocolates",11.25,"",3,3,2);
 
         productService.addProduct(c1);
         productService.addProduct(c2);
         productService.addProduct(c3);
         productService.addProduct(c4);
 
-        PriceDto pc1=new PriceDto("perfume",32.19,1);
-        PriceDto pc2=new PriceDto("perfume",20.89,1);
+        PriceDto pc1=new PriceDto("perfume",27.99,1);
+        PriceDto pc2=new PriceDto("perfume",18.99,1);
         PriceDto pc3=new PriceDto("headache pills",9.75,1);
-        PriceDto pc4=new PriceDto("chocolates",11.85,1);
+        PriceDto pc4=new PriceDto("chocolates",11.25,1);
 
         List<PriceDto> plc3=new ArrayList<>();
         plc3.add(pc1);
