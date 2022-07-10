@@ -28,10 +28,6 @@ public class PriceCalculatorService {
 
             Product product = productService.getProductByNameAndPrice(priceDto.getName(),priceDto.getPrice());
 
-            if(product==null){
-                throw new CustomException("Product does not exist");
-            }
-
             salesTax = product.getPrice() * (product.getSalesTax().getTaxValue() / 100);
             importTax = product.getPrice() * (product.getImportDuty().getDutyValue() / 100);
             
