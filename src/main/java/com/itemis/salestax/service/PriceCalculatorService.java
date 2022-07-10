@@ -1,15 +1,15 @@
 package com.itemis.salestax.service;
 
 import com.itemis.salestax.dto.PriceDto;
+import com.itemis.salestax.exceptions.CustomException;
 import com.itemis.salestax.model.Product;
-import com.itemis.salestax.model.SalesTax;
-import com.itemis.salestax.repository.SalesTaxRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -31,11 +31,8 @@ public class PriceCalculatorService {
             salesTax = product.getPrice() * (product.getSalesTax().getTaxValue() / 100);
             importTax = product.getPrice() * (product.getImportDuty().getDutyValue() / 100);
             
-            Double roundedSalesTax=Math.round(salesTax * 20) / 20.0;
-            Double roundedImportTax=Math.round(importTax * 20) / 20.0;
-
-            taxes = roundedSalesTax + roundedImportTax;
-            total = taxes + product.getPrice();
+            taxes = getRoundedPrice(salesTax+importTax);
+            total = getPriceUptoTwoDecimal(taxes + product.getPrice());
 
             priceDto.setTaxes(taxes);
             priceDto.setTotal(total);
@@ -46,6 +43,14 @@ public class PriceCalculatorService {
         }
 
         return productList;
+    }
+
+    public double getRoundedPrice(double input) throws CustomException {
+        return Math.round(input * 20) / 20.0;
+    }
+
+    public double getPriceUptoTwoDecimal(double input) throws CustomException {
+        return new BigDecimal(input).setScale(2, RoundingMode.HALF_EVEN).doubleValue();
     }
 
 }
