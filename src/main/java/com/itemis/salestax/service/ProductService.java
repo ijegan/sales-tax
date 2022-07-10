@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.itemis.salestax.common.Response;
+import com.itemis.salestax.dto.PriceDto;
 import com.itemis.salestax.model.ImportDuty;
 import com.itemis.salestax.model.SalesTax;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,6 +75,15 @@ public class ProductService {
 
         if (productExists) {
             throw new CustomException("Product already exists");
+        }
+    }
+
+    public void validatePriceDto(List<PriceDto> productList){
+        for (PriceDto priceDto : productList) {
+            Product product = getProductByNameAndPrice(priceDto.getName(), priceDto.getPrice());
+            if (product == null) {
+                throw new CustomException("Product does not exist");
+            }
         }
     }
 

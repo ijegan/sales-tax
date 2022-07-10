@@ -19,6 +19,9 @@ public class PriceCalculatorService {
     private ProductService productService;
 
     public List<PriceDto> calculatePrice(List<PriceDto> productList) {
+
+        productService.validatePriceDto(productList);
+
         double output = 0;
         double outputTaxes = 0;
 
@@ -30,7 +33,7 @@ public class PriceCalculatorService {
 
             salesTax = product.getPrice() * (product.getSalesTax().getTaxValue() / 100);
             importTax = product.getPrice() * (product.getImportDuty().getDutyValue() / 100);
-            
+
             taxes = getRoundedPrice(salesTax+importTax);
             total = getPriceUptoTwoDecimal(taxes + product.getPrice());
 
