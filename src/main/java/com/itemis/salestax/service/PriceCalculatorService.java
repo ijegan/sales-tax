@@ -1,5 +1,6 @@
 package com.itemis.salestax.service;
 
+import com.itemis.salestax.common.PriceResponse;
 import com.itemis.salestax.dto.PriceDto;
 import com.itemis.salestax.exceptions.CustomException;
 import com.itemis.salestax.model.Product;
@@ -18,7 +19,7 @@ public class PriceCalculatorService {
     @Autowired
     private ProductService productService;
 
-    public List<PriceDto> calculatePrice(List<PriceDto> productList) {
+    public PriceResponse calculatePrice(List<PriceDto> productList) {
 
         productService.validatePriceDto(productList);
 
@@ -39,13 +40,16 @@ public class PriceCalculatorService {
 
             priceDto.setTaxes(taxes);
             priceDto.setTotal(total);
+            priceDto.setImported(product.getImportDuty().getDutyValue()>0);
 
             output = output + total;
             outputTaxes = outputTaxes + taxes;
 
         }
 
-        return productList;
+        PriceResponse priceResponse = new PriceResponse(productList, getRoundedPrice(outputTaxes), output);
+
+        return priceResponse;
     }
 
     public double getRoundedPrice(double input) throws CustomException {

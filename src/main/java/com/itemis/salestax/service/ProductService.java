@@ -53,6 +53,9 @@ public class ProductService {
 
         List<Product> products = getProductByName(productDto.getName());
 
+        if(products.isEmpty())
+            return;
+
         boolean productExists = true;
 
         for (Product product : products) {

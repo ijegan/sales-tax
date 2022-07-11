@@ -8,6 +8,8 @@ public class PriceDto {
     private @NotNull String name;
     private @NotNull double price;
 
+    private boolean imported;
+
     private double taxes;
     private double total;
 
@@ -61,5 +63,13 @@ public class PriceDto {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public boolean isImported() {
+        return imported;
+    }
+
+    public void setImported(boolean imported) {
+        this.imported = imported;
     }
 }

@@ -1,9 +1,8 @@
 package com.itemis.salestax.controller;
 
+import com.itemis.salestax.common.PriceResponse;
 import com.itemis.salestax.dto.PriceDto;
-import com.itemis.salestax.model.Product;
 import com.itemis.salestax.service.PriceCalculatorService;
-import com.itemis.salestax.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +22,9 @@ public class PriceController {
     private PriceCalculatorService priceCalculatorService;
 
     @PostMapping("/compute")
-    public ResponseEntity<List<PriceDto>>  calculatePrice(@RequestBody List<PriceDto> productList) {
+    public ResponseEntity<PriceResponse> calculatePrice(@RequestBody List<PriceDto> productList) {
 
-        priceCalculatorService.calculatePrice(productList);
-
-        return new ResponseEntity<List<PriceDto>>(productList, HttpStatus.OK);
+        PriceResponse body = priceCalculatorService.calculatePrice(productList);
+        return new ResponseEntity<PriceResponse>(body, HttpStatus.OK);
     }
 }
