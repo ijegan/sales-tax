@@ -23,7 +23,7 @@ public class PriceCalculatorService {
 
         productService.validatePriceDto(productList);
 
-        double output = 0;
+        double outputTotal = 0;
         double outputTaxes = 0;
 
         for (PriceDto priceDto : productList) {
@@ -42,12 +42,12 @@ public class PriceCalculatorService {
             priceDto.setTotal(total);
             priceDto.setImported(product.getImportDuty().getDutyValue()>0);
 
-            output = output + total;
+            outputTotal = outputTotal + total;
             outputTaxes = outputTaxes + taxes;
 
         }
 
-        PriceResponse priceResponse = new PriceResponse(productList, getRoundedPrice(outputTaxes), output);
+        PriceResponse priceResponse = new PriceResponse(productList, getRoundedPrice(outputTaxes), outputTotal);
 
         return priceResponse;
     }
