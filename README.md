@@ -8,20 +8,20 @@ Total price of each product is equal to sum of salestax plus the price of each p
 In addition to salestaxes(import tax, sales tax) and total price for each item, we need to calculate the total salestaxes and total price of all the products in the list.
 
 #Design
-Each product belongs to a category(Food/Medicine/others etc. ). 
-And each product has sales tax mapping, where each sales tax entry has a different sales tax percentage.
-Also each product has a mapping to import duty. Each product can be mapped to only of the available importduty entry.
+* Each product belongs to a category(Food/Medicine/others etc. ). 
+* And each product has sales tax mapping, where each sales tax entry has a different sales tax percentage.
+* Also each product has a mapping to import duty. Each product can be mapped to only of the available importduty entry.
 
 H2 database is used to persist the information of salestax,import tax,category and product information.
 
 #CRUD operations
-user can add/update/get all the available categories available using endpoint '../category/'
-user can add/update/get all the available sales tax categories using '../sales-tax/'
-user can add/update/get all the available sales tax categories using '../import-duty/'
+* user can add/update/get all the available categories available using endpoint '../category/'
+* user can add/update/get all the available sales tax categories using '../sales-tax/'
+* user can add/update/get all the available sales tax categories using '../import-duty/'
 
-user can add/update/get all the products using '../product' endpoint. Each product is mapped to a category,salestax and importduty.
+* user can add/update/get all the products using '../product' endpoint. Each product is mapped to a category,salestax and importduty.
 
-salestax and total price of all individual items and all the items combined is computed and is available in the end point '../price-calculator'.
+* salestax and total price of all individual items and all the items combined is computed and is available in the end point '../price-calculator'.
 
 
 #Tests
