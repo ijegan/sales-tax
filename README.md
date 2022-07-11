@@ -25,6 +25,7 @@ H2 database is used to persist the information of salestax,import tax,category a
 
 
 #Tests
+
 JUnit invokes the service layer to calculate the taxes and total prices of the products in the list. 
 No mocking is done. 
 New category,salestax,import duty entries are added first and then product are added to the products table.
