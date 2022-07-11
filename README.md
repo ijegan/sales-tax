@@ -10,14 +10,15 @@ In addition to salestaxes(import tax, sales tax) and total price for each item, 
 #Design
 * Each product belongs to a category(Food/Medicine/others etc. ). 
 * And each product has sales tax mapping, where each sales tax entry has a different sales tax percentage.
-* Also each product has a mapping to import duty. Each product can be mapped to only of the available importduty entry.
+* Also each product has a mapping to import duty. 
+* Each product can be mapped to a category/salestax & importduty.
 
 H2 database is used to persist the information of salestax,import tax,category and product information.
 
 #CRUD operations
 * user can add/update/get all the available categories available using endpoint '../category/'
 * user can add/update/get all the available sales tax categories using '../sales-tax/'
-* user can add/update/get all the available sales tax categories using '../import-duty/'
+* user can add/update/get all the available importduty using '../import-duty/'
 
 * user can add/update/get all the products using '../product' endpoint. Each product is mapped to a category,salestax and importduty.
 
